@@ -7,7 +7,6 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from .models import MenuItem, Booking
 
-
 # Create your views here.
 def index(request):
     return render(request, 'index.html', {})
@@ -30,3 +29,4 @@ class SingleMenuItemView(generics.RetrieveUpdateDestroyAPIView):
 class BookingViewSet(viewsets.ModelViewSet):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
+    permission_classes = [IsAuthenticated]
