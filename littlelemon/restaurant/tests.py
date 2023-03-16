@@ -1,6 +1,7 @@
 from django.test import TestCase
-from .models import MenuItem
+from .models import MenuItem, Booking
 from .serializers import MenuItemSerializer
+import datetime
 
 # Create your tests here.
 class MenuItemTest(TestCase):
@@ -17,3 +18,8 @@ class MenuItemTest(TestCase):
   #  def test_getall(self):
    #     serialized_data = [MenuItemSerializer(item) for item in self.items]
     #    self.assertEqual(serialized_data, MenuItemView(self.items???request?) )
+
+class BookingTest(TestCase):
+    def test_get_item(self):
+        self.item = Booking.objects.create(name = "Henry", no_of_guests = 9, date= datetime.date(2023, 3, 29 ))
+        self.assertEqual(str(self.item), "Henry's reservation for 9 guests on 2023-03-29")
